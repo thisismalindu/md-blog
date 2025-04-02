@@ -2,15 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
+      "src": "public/**",
       "use": "@vercel/static"
     },
     {
@@ -20,17 +12,17 @@
   ],
   "routes": [
     {
-      "src": "/post.html",
-      "dest": "/post.html"
+      "src": "/api/posts",
+      "dest": "/loader.js"
     },
     {
       "src": "/posts.json",
-      "dest": "/posts.json"
+      "dest": "/public/posts.json"
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/public/$1"
     }
   ],
-  "buildCommand": "npm install && npm run build"
+  "buildCommand": "npm install && node loader.js"
 } 

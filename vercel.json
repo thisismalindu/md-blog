@@ -16,13 +16,9 @@
       "dest": "/loader.js"
     },
     {
-      "src": "/posts.json",
-      "dest": "/public/posts.json"
-    },
-    {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
   ],
-  "buildCommand": "npm install && node loader.js"
+  "buildCommand": "npm install"
 } 

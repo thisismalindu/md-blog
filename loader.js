@@ -31,20 +31,17 @@ function processMarkdownFiles() {
     });
 
     // Sort posts by date (newest first)
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // Write posts.json
-    fs.writeFileSync(path.join(__dirname, 'public', 'posts.json'), JSON.stringify(posts, null, 2));
+    return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
-
-// Create public directory if it doesn't exist
-fs.ensureDirSync(path.join(__dirname, 'public'));
-
-// Process files
-processMarkdownFiles();
 
 // Export for Vercel
 module.exports = async (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ success: true }));
+    try {
+        const posts = processMarkdownFiles();
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(posts));
+    } catch (error) {
+        console.error('Error processing posts:', error);
+        res.status(500).json({ error: 'Failed to process posts' });
+    }
 }; 

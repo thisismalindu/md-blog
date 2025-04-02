@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch('posts.json');
+        const response = await fetch('/api/posts');
         const posts = await response.json();
         
         const post = posts.find(p => `${p.slug}.md` === postFile);

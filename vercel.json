@@ -2,6 +2,18 @@
   "version": 2,
   "builds": [
     {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "loader.js",
       "use": "@vercel/node"
     }
@@ -10,6 +22,10 @@
     {
       "src": "/post.html",
       "dest": "/post.html"
+    },
+    {
+      "src": "/posts.json",
+      "dest": "/posts.json"
     },
     {
       "src": "/(.*)",
